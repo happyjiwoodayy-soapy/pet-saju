@@ -90,181 +90,421 @@ const SajuEngine = (() => {
     dog: {
       colors: [
         { name: '따뜻한 갈색', emoji: '🟤', element: '토' },
+        { name: '황토빛 오렌지', emoji: '🟠', element: '토' },
+        { name: '카라멜 베이지', emoji: '🟡', element: '토' },
         { name: '활력 빨강', emoji: '🔴', element: '화' },
+        { name: '코랄 핑크', emoji: '🩷', element: '화' },
+        { name: '선셋 오렌지', emoji: '🟠', element: '화' },
         { name: '자연 초록', emoji: '🟢', element: '목' },
+        { name: '올리브 그린', emoji: '🫒', element: '목' },
+        { name: '민트 그린', emoji: '🟩', element: '목' },
         { name: '하늘 파랑', emoji: '🔵', element: '수' },
-        { name: '은빛 회색', emoji: '⚪', element: '금' }
+        { name: '네이비 블루', emoji: '💙', element: '수' },
+        { name: '아쿠아 블루', emoji: '🩵', element: '수' },
+        { name: '은빛 회색', emoji: '⚪', element: '금' },
+        { name: '샴페인 골드', emoji: '✨', element: '금' },
+        { name: '라벤더 실버', emoji: '🪻', element: '금' }
       ],
       snacks: [
         { name: '고구마', emoji: '🍠', element: '토' },
+        { name: '단호박 큐브', emoji: '🎃', element: '토' },
+        { name: '바나나칩', emoji: '🍌', element: '토' },
         { name: '닭가슴살', emoji: '🍗', element: '화' },
+        { name: '연어 져키', emoji: '🐟', element: '화' },
+        { name: '오리 안심', emoji: '🦆', element: '화' },
         { name: '사과', emoji: '🍎', element: '목' },
+        { name: '블루베리', emoji: '🫐', element: '목' },
+        { name: '당근 스틱', emoji: '🥕', element: '목' },
         { name: '수박', emoji: '🍉', element: '수' },
-        { name: '치즈', emoji: '🧀', element: '금' }
+        { name: '오이 쿨링바', emoji: '🥒', element: '수' },
+        { name: '코코넛 오일 간식', emoji: '🥥', element: '수' },
+        { name: '치즈', emoji: '🧀', element: '금' },
+        { name: '요거트 큐브', emoji: '🥛', element: '금' },
+        { name: '북어 스틱', emoji: '🐡', element: '금' }
       ],
       walks: [
         { name: '흙길 산책 오후 5시', emoji: '🌾', element: '토' },
+        { name: '들판 산책 오전 11시', emoji: '🏕️', element: '토' },
+        { name: '텃밭 주변 오후 4시', emoji: '🌻', element: '토' },
         { name: '햇살 공원 오후 3시', emoji: '☀️', element: '화' },
+        { name: '운동장 달리기 오전 9시', emoji: '🏃', element: '화' },
+        { name: '해변 산책 오후 2시', emoji: '🏖️', element: '화' },
         { name: '숲속 트레일 오전 10시', emoji: '🌳', element: '목' },
+        { name: '산책로 둘레길 오전 8시', emoji: '🍃', element: '목' },
+        { name: '식물원 산책 오후 1시', emoji: '🌿', element: '목' },
         { name: '개울가 산책 오전 7시', emoji: '💧', element: '수' },
-        { name: '도심 산책 오후 6시', emoji: '🏙️', element: '금' }
+        { name: '호수 공원 저녁 6시', emoji: '🌊', element: '수' },
+        { name: '비 온 뒤 산책 오후 5시', emoji: '🌧️', element: '수' },
+        { name: '도심 산책 오후 6시', emoji: '🏙️', element: '금' },
+        { name: '아파트 단지 저녁 7시', emoji: '🌆', element: '금' },
+        { name: '주택가 골목 오후 4시', emoji: '🏘️', element: '금' }
       ],
       bestFriend: [
         { name: '같은 동네 강아지', emoji: '🐕', element: '토' },
+        { name: '듬직한 진돗개', emoji: '🐕', element: '토' },
+        { name: '포근한 시추', emoji: '🐶', element: '토' },
         { name: '활발한 래브라도', emoji: '🦮', element: '화' },
+        { name: '에너지 넘치는 비글', emoji: '🐕', element: '화' },
+        { name: '장난꾸러기 잭러셀', emoji: '🐾', element: '화' },
         { name: '호기심 많은 고양이', emoji: '🐱', element: '목' },
+        { name: '모험 좋아하는 허스키', emoji: '🐺', element: '목' },
+        { name: '자유로운 스피츠', emoji: '🦊', element: '목' },
         { name: '느긋한 골든리트리버', emoji: '🐕‍🦺', element: '수' },
-        { name: '영리한 보더콜리', emoji: '🐾', element: '금' }
+        { name: '얌전한 말티즈', emoji: '🤍', element: '수' },
+        { name: '사려깊은 푸들', emoji: '🐩', element: '수' },
+        { name: '영리한 보더콜리', emoji: '🐾', element: '금' },
+        { name: '도도한 시바이누', emoji: '🦊', element: '금' },
+        { name: '우아한 그레이하운드', emoji: '🏅', element: '금' }
       ]
     },
     cat: {
       colors: [
         { name: '숲의 초록', emoji: '🟢', element: '목' },
+        { name: '에메랄드 그린', emoji: '💚', element: '목' },
+        { name: '이끼빛 올리브', emoji: '🫒', element: '목' },
         { name: '석양 오렌지', emoji: '🟠', element: '화' },
+        { name: '장미 빨강', emoji: '🌹', element: '화' },
+        { name: '코랄 핑크', emoji: '🩷', element: '화' },
         { name: '모래빛 베이지', emoji: '🟡', element: '토' },
+        { name: '카푸치노 브라운', emoji: '🟤', element: '토' },
+        { name: '크림 아이보리', emoji: '🤍', element: '토' },
         { name: '달빛 은색', emoji: '⚪', element: '금' },
-        { name: '깊은 남색', emoji: '🔵', element: '수' }
+        { name: '로즈골드 핑크', emoji: '✨', element: '금' },
+        { name: '플래티넘 화이트', emoji: '🪙', element: '금' },
+        { name: '깊은 남색', emoji: '🔵', element: '수' },
+        { name: '미드나잇 퍼플', emoji: '🟣', element: '수' },
+        { name: '아이스 블루', emoji: '🩵', element: '수' }
       ],
       snacks: [
         { name: '캣그라스', emoji: '🌿', element: '목' },
+        { name: '닭고기 스틱', emoji: '🍗', element: '목' },
+        { name: '오리고기 큐브', emoji: '🦆', element: '목' },
         { name: '참치', emoji: '🐟', element: '화' },
+        { name: '가다랑어포', emoji: '🐠', element: '화' },
+        { name: '소고기 져키', emoji: '🥩', element: '화' },
         { name: '닭고기', emoji: '🍗', element: '토' },
+        { name: '고구마 무스', emoji: '🍠', element: '토' },
+        { name: '달걀 노른자', emoji: '🥚', element: '토' },
         { name: '연어', emoji: '🍣', element: '금' },
-        { name: '새우', emoji: '🦐', element: '수' }
+        { name: '대구 살', emoji: '🐟', element: '금' },
+        { name: '치킨 무스', emoji: '🫕', element: '금' },
+        { name: '새우', emoji: '🦐', element: '수' },
+        { name: '오징어 링', emoji: '🦑', element: '수' },
+        { name: '게살 스낵', emoji: '🦀', element: '수' }
       ],
       walks: [
         { name: '베란다 일광욕 오전 11시', emoji: '🌿', element: '목' },
+        { name: '화분 옆 낮잠 오후 1시', emoji: '🪴', element: '목' },
+        { name: '정원 관찰 오전 10시', emoji: '🦋', element: '목' },
         { name: '창가 햇볕 오후 2시', emoji: '☀️', element: '화' },
+        { name: '양지바른 소파 오후 3시', emoji: '🛋️', element: '화' },
+        { name: '지붕 위 일광욕 오전 9시', emoji: '🏠', element: '화' },
         { name: '거실 탐험 오후 4시', emoji: '🏠', element: '토' },
+        { name: '옷장 위 모험 오후 5시', emoji: '👗', element: '토' },
+        { name: '박스 놀이 오후 6시', emoji: '📦', element: '토' },
         { name: '캣타워 놀이 저녁 8시', emoji: '🗼', element: '금' },
-        { name: '조용한 탐색 새벽 5시', emoji: '🌙', element: '수' }
+        { name: '그루밍 타임 저녁 9시', emoji: '✨', element: '금' },
+        { name: '벽 선반 순찰 저녁 7시', emoji: '🧗', element: '금' },
+        { name: '조용한 탐색 새벽 5시', emoji: '🌙', element: '수' },
+        { name: '밤의 사냥놀이 밤 11시', emoji: '🐾', element: '수' },
+        { name: '욕실 물장난 오전 8시', emoji: '🚿', element: '수' }
       ],
       bestFriend: [
         { name: '같이 뒹구는 고양이', emoji: '🐈', element: '목' },
-        { name: '함께 노는 장난감', emoji: '🧶', element: '화' },
+        { name: '호기심 가득한 아비시니안', emoji: '🐱', element: '목' },
+        { name: '장난기 넘치는 벵갈', emoji: '🐆', element: '목' },
+        { name: '함께 노는 장난감 쥐', emoji: '🧶', element: '화' },
+        { name: '활발한 샴 고양이', emoji: '🐱', element: '화' },
+        { name: '놀이 좋아하는 먼치킨', emoji: '🐾', element: '화' },
         { name: '온순한 강아지', emoji: '🐶', element: '토' },
+        { name: '편안한 랙돌', emoji: '🧸', element: '토' },
+        { name: '순한 브리티시 숏헤어', emoji: '🐱', element: '토' },
         { name: '도도한 페르시안', emoji: '👑', element: '금' },
-        { name: '조용한 러시안블루', emoji: '🐈‍⬛', element: '수' }
+        { name: '우아한 터키시 앙고라', emoji: '🦢', element: '금' },
+        { name: '기품있는 메인쿤', emoji: '🦁', element: '금' },
+        { name: '조용한 러시안블루', emoji: '🐈‍⬛', element: '수' },
+        { name: '신비로운 코랏', emoji: '🔮', element: '수' },
+        { name: '차분한 스코티시 폴드', emoji: '💤', element: '수' }
       ]
     },
     hamster: {
       colors: [
         { name: '새싹 연두', emoji: '🟢', element: '목' },
+        { name: '피스타치오 그린', emoji: '🟩', element: '목' },
+        { name: '라임 옐로우', emoji: '💛', element: '목' },
         { name: '해바라기 노랑', emoji: '🟡', element: '화' },
+        { name: '살구빛 오렌지', emoji: '🟠', element: '화' },
+        { name: '체리 핑크', emoji: '🩷', element: '화' },
         { name: '모래빛 베이지', emoji: '🟤', element: '토' },
+        { name: '꿀빛 골드', emoji: '✨', element: '토' },
+        { name: '밀크 초코', emoji: '🍫', element: '토' },
         { name: '구름 하양', emoji: '⚪', element: '금' },
-        { name: '하늘 하양', emoji: '🔵', element: '수' }
+        { name: '진주빛 핑크', emoji: '🪷', element: '금' },
+        { name: '실버 그레이', emoji: '🩶', element: '금' },
+        { name: '하늘 하양', emoji: '🔵', element: '수' },
+        { name: '라벤더 퍼플', emoji: '🟣', element: '수' },
+        { name: '베이비 블루', emoji: '🩵', element: '수' }
       ],
       snacks: [
         { name: '브로콜리', emoji: '🥦', element: '목' },
+        { name: '시금치 잎', emoji: '🌿', element: '목' },
+        { name: '완두콩', emoji: '🫛', element: '목' },
         { name: '해바라기씨', emoji: '🌻', element: '화' },
+        { name: '호박씨', emoji: '🎃', element: '화' },
+        { name: '아마씨', emoji: '🌾', element: '화' },
         { name: '당근', emoji: '🥕', element: '토' },
+        { name: '고구마 말랭이', emoji: '🍠', element: '토' },
+        { name: '옥수수 알갱이', emoji: '🌽', element: '토' },
         { name: '호두', emoji: '🥜', element: '금' },
-        { name: '오이', emoji: '🥒', element: '수' }
+        { name: '아몬드 조각', emoji: '🫘', element: '금' },
+        { name: '치즈 큐브', emoji: '🧀', element: '금' },
+        { name: '오이', emoji: '🥒', element: '수' },
+        { name: '수박 조각', emoji: '🍉', element: '수' },
+        { name: '딸기', emoji: '🍓', element: '수' }
       ],
       walks: [
         { name: '쳇바퀴 타임 오전 9시', emoji: '🎡', element: '목' },
+        { name: '터널 미로 탐험 오전 11시', emoji: '🏗️', element: '목' },
+        { name: '놀이터 정글짐 오후 1시', emoji: '🧩', element: '목' },
         { name: '볼 굴리기 오후 3시', emoji: '⚽', element: '화' },
+        { name: '거실 자유 달리기 오후 4시', emoji: '🏃', element: '화' },
+        { name: '장애물 코스 오후 2시', emoji: '🏅', element: '화' },
         { name: '터널 탐험 오후 5시', emoji: '🕳️', element: '토' },
+        { name: '이불 속 모험 오후 6시', emoji: '🛏️', element: '토' },
+        { name: '상자 미로 오후 7시', emoji: '📦', element: '토' },
         { name: '모래 목욕 저녁 7시', emoji: '🛁', element: '금' },
-        { name: '조용한 탐색 밤 10시', emoji: '🌙', element: '수' }
+        { name: '그루밍 타임 저녁 8시', emoji: '✨', element: '금' },
+        { name: '간식 찾기 놀이 저녁 9시', emoji: '🔍', element: '금' },
+        { name: '조용한 탐색 밤 10시', emoji: '🌙', element: '수' },
+        { name: '야간 쳇바퀴 밤 11시', emoji: '🌃', element: '수' },
+        { name: '새벽 몰래 탐험 새벽 2시', emoji: '🦉', element: '수' }
       ],
       bestFriend: [
         { name: '탐험 동료 햄스터', emoji: '🐹', element: '목' },
+        { name: '호기심 많은 드워프 햄스터', emoji: '🐹', element: '목' },
+        { name: '활동적인 로보로브스키', emoji: '💨', element: '목' },
         { name: '에너지 넘치는 짝꿍', emoji: '💫', element: '화' },
+        { name: '장난꾸러기 골든 햄스터', emoji: '🌟', element: '화' },
+        { name: '달리기 좋아하는 친구', emoji: '🏃', element: '화' },
         { name: '듬직한 보호자', emoji: '🤗', element: '토' },
+        { name: '편안한 기니피그', emoji: '🐹', element: '토' },
+        { name: '같은 케이지 룸메이트', emoji: '🏠', element: '토' },
         { name: '조용한 동거인', emoji: '🐹', element: '금' },
-        { name: '야행성 친구', emoji: '🌙', element: '수' }
+        { name: '깔끔한 친칠라', emoji: '🐭', element: '금' },
+        { name: '세심한 데구', emoji: '🐾', element: '금' },
+        { name: '야행성 친구', emoji: '🌙', element: '수' },
+        { name: '조용한 이웃 슈가글라이더', emoji: '🦇', element: '수' },
+        { name: '몽글몽글 페럿', emoji: '🦡', element: '수' }
       ]
     },
     rabbit: {
       colors: [
         { name: '클로버 초록', emoji: '🟢', element: '목' },
+        { name: '허브 그린', emoji: '🌿', element: '목' },
+        { name: '봄 새싹 연두', emoji: '🟩', element: '목' },
         { name: '당근 오렌지', emoji: '🟠', element: '화' },
+        { name: '딸기 레드', emoji: '🍓', element: '화' },
+        { name: '벚꽃 핑크', emoji: '🌸', element: '화' },
         { name: '건초빛 베이지', emoji: '🟡', element: '토' },
+        { name: '카라멜 브라운', emoji: '🟤', element: '토' },
+        { name: '밀크티 아이보리', emoji: '🤎', element: '토' },
         { name: '솜사탕 하양', emoji: '⚪', element: '금' },
-        { name: '라벤더 보라', emoji: '🟣', element: '수' }
+        { name: '펄 실버', emoji: '🪙', element: '금' },
+        { name: '샴페인 골드', emoji: '✨', element: '금' },
+        { name: '라벤더 보라', emoji: '🟣', element: '수' },
+        { name: '블루베리 퍼플', emoji: '💜', element: '수' },
+        { name: '스카이 블루', emoji: '🩵', element: '수' }
       ],
       snacks: [
         { name: '티모시 건초', emoji: '🌾', element: '목' },
+        { name: '파슬리 잎', emoji: '🌿', element: '목' },
+        { name: '바질 스낵', emoji: '🍃', element: '목' },
         { name: '당근', emoji: '🥕', element: '화' },
+        { name: '파프리카 조각', emoji: '🫑', element: '화' },
+        { name: '말린 토마토', emoji: '🍅', element: '화' },
         { name: '고구마 말랭이', emoji: '🍠', element: '토' },
+        { name: '귀리 쿠키', emoji: '🍪', element: '토' },
+        { name: '건초 큐브', emoji: '🧱', element: '토' },
         { name: '사과 조각', emoji: '🍎', element: '금' },
-        { name: '바나나', emoji: '🍌', element: '수' }
+        { name: '배 슬라이스', emoji: '🍐', element: '금' },
+        { name: '건포도 한 알', emoji: '🫐', element: '금' },
+        { name: '바나나', emoji: '🍌', element: '수' },
+        { name: '수박 큐브', emoji: '🍉', element: '수' },
+        { name: '블루베리', emoji: '🫐', element: '수' }
       ],
       walks: [
         { name: '풀밭 뛰놀기 오전 10시', emoji: '🌿', element: '목' },
+        { name: '정원 탐험 오전 9시', emoji: '🌷', element: '목' },
+        { name: '잔디밭 빙키 오전 11시', emoji: '🐇', element: '목' },
         { name: '거실 자유시간 오후 2시', emoji: '☀️', element: '화' },
+        { name: '양지바른 바닥 구르기 오후 1시', emoji: '🌞', element: '화' },
+        { name: '놀이매트 점프 오후 3시', emoji: '🎯', element: '화' },
         { name: '마당 탐험 오후 5시', emoji: '🏡', element: '토' },
+        { name: '복도 달리기 오후 4시', emoji: '🏃', element: '토' },
+        { name: '카펫 위 굴파기 오후 6시', emoji: '🕳️', element: '토' },
         { name: '조용한 산책 저녁 6시', emoji: '🌆', element: '금' },
-        { name: '실내 놀이 밤 8시', emoji: '🌙', element: '수' }
+        { name: '발코니 바람 쐬기 저녁 5시', emoji: '🍃', element: '금' },
+        { name: '차분한 그루밍 저녁 7시', emoji: '✨', element: '금' },
+        { name: '실내 놀이 밤 8시', emoji: '🌙', element: '수' },
+        { name: '밤의 자유시간 밤 9시', emoji: '🌃', element: '수' },
+        { name: '달빛 아래 뛰놀기 밤 10시', emoji: '🐰', element: '수' }
       ],
       bestFriend: [
         { name: '함께 풀 뜯는 친구', emoji: '🐰', element: '목' },
+        { name: '탐험 좋아하는 네덜란드 드워프', emoji: '🐇', element: '목' },
+        { name: '호기심 많은 미니렉스', emoji: '🐾', element: '목' },
         { name: '활발한 놀이 친구', emoji: '💨', element: '화' },
+        { name: '에너지 넘치는 홀랜드롭', emoji: '🐰', element: '화' },
+        { name: '장난꾸러기 라이온헤드', emoji: '🦁', element: '화' },
         { name: '느긋한 동반자', emoji: '🐾', element: '토' },
+        { name: '편안한 플레미시 자이언트', emoji: '🧸', element: '토' },
+        { name: '순한 앙고라 토끼', emoji: '☁️', element: '토' },
         { name: '조용한 기니피그', emoji: '🐹', element: '금' },
-        { name: '차분한 거북이', emoji: '🐢', element: '수' }
+        { name: '깔끔한 친칠라', emoji: '🐭', element: '금' },
+        { name: '우아한 렉스 토끼', emoji: '👑', element: '금' },
+        { name: '차분한 거북이', emoji: '🐢', element: '수' },
+        { name: '여유로운 햄스터', emoji: '🐹', element: '수' },
+        { name: '평화로운 고슴도치', emoji: '🦔', element: '수' }
       ]
     },
     bird: {
       colors: [
         { name: '숲의 초록', emoji: '🟢', element: '목' },
+        { name: '앵무새 라임', emoji: '🟩', element: '목' },
+        { name: '에메랄드 그린', emoji: '💚', element: '목' },
         { name: '태양 노랑', emoji: '🟡', element: '화' },
+        { name: '망고 오렌지', emoji: '🟠', element: '화' },
+        { name: '로즈 핑크', emoji: '🩷', element: '화' },
         { name: '모래빛 베이지', emoji: '🟤', element: '토' },
+        { name: '황금빛 옐로우', emoji: '✨', element: '토' },
+        { name: '시나몬 브라운', emoji: '🤎', element: '토' },
         { name: '구름 하양', emoji: '⚪', element: '금' },
-        { name: '하늘 파랑', emoji: '🔵', element: '수' }
+        { name: '실버 블루', emoji: '🪙', element: '금' },
+        { name: '펄 그레이', emoji: '🩶', element: '금' },
+        { name: '하늘 파랑', emoji: '🔵', element: '수' },
+        { name: '코발트 블루', emoji: '💙', element: '수' },
+        { name: '바이올렛 퍼플', emoji: '🟣', element: '수' }
       ],
       snacks: [
         { name: '채소 믹스', emoji: '🥬', element: '목' },
+        { name: '콩나물 스프라우트', emoji: '🌱', element: '목' },
+        { name: '브로콜리 꽃', emoji: '🥦', element: '목' },
         { name: '기장', emoji: '🌾', element: '화' },
+        { name: '해바라기씨', emoji: '🌻', element: '화' },
+        { name: '좁쌀 스틱', emoji: '🌾', element: '화' },
         { name: '과일 조각', emoji: '🍇', element: '토' },
+        { name: '바나나 칩', emoji: '🍌', element: '토' },
+        { name: '당근 슈레드', emoji: '🥕', element: '토' },
         { name: '칼슘 보충제', emoji: '💎', element: '금' },
-        { name: '수분 가득 오이', emoji: '🥒', element: '수' }
+        { name: '보레 미네랄', emoji: '🪨', element: '금' },
+        { name: '오징어뼈 간식', emoji: '🦴', element: '금' },
+        { name: '수분 가득 오이', emoji: '🥒', element: '수' },
+        { name: '수박 씨앗', emoji: '🍉', element: '수' },
+        { name: '포도 한 알', emoji: '🍇', element: '수' }
       ],
       walks: [
         { name: '방 안 자유비행 오전 10시', emoji: '🕊️', element: '목' },
+        { name: '나뭇가지 놀이 오전 11시', emoji: '🌿', element: '목' },
+        { name: '창밖 구경 오전 9시', emoji: '🪟', element: '목' },
         { name: '창가 일광욕 오후 1시', emoji: '☀️', element: '화' },
+        { name: '햇볕 목욕 오후 2시', emoji: '🌞', element: '화' },
+        { name: '야외 새장 나들이 오후 3시', emoji: '🏕️', element: '화' },
         { name: '놀이터 탐험 오후 4시', emoji: '🎪', element: '토' },
+        { name: '장난감 부수기 오후 5시', emoji: '🧩', element: '토' },
+        { name: '바닥 산책 오후 6시', emoji: '🚶', element: '토' },
         { name: '노래 연습 오후 6시', emoji: '🎵', element: '금' },
-        { name: '조용한 목욕 오전 8시', emoji: '🛁', element: '수' }
+        { name: '거울 놀이 저녁 7시', emoji: '🪞', element: '금' },
+        { name: '종소리 놀이 저녁 8시', emoji: '🔔', element: '금' },
+        { name: '조용한 목욕 오전 8시', emoji: '🛁', element: '수' },
+        { name: '분무기 샤워 오전 7시', emoji: '💦', element: '수' },
+        { name: '물그릇 장난 오후 7시', emoji: '🚿', element: '수' }
       ],
       bestFriend: [
         { name: '나뭇가지 위 친구', emoji: '🌿', element: '목' },
+        { name: '탐험가 코뉴어', emoji: '🦜', element: '목' },
+        { name: '활동적인 잉꼬', emoji: '🐤', element: '목' },
         { name: '노래하는 짝꿍', emoji: '🎶', element: '화' },
+        { name: '수다쟁이 사랑앵무', emoji: '💕', element: '화' },
+        { name: '에너지 넘치는 카카티엘', emoji: '🌟', element: '화' },
         { name: '보금자리 이웃', emoji: '🏡', element: '토' },
+        { name: '순한 비둘기', emoji: '🕊️', element: '토' },
+        { name: '편안한 카나리아', emoji: '💛', element: '토' },
         { name: '영리한 앵무새', emoji: '🦜', element: '금' },
-        { name: '차분한 문조', emoji: '🐦', element: '수' }
+        { name: '똑똑한 아프리칸 그레이', emoji: '🧠', element: '금' },
+        { name: '기품있는 코카투', emoji: '👑', element: '금' },
+        { name: '차분한 문조', emoji: '🐦', element: '수' },
+        { name: '조용한 금화조', emoji: '🎵', element: '수' },
+        { name: '평화로운 십자매', emoji: '🕊️', element: '수' }
       ]
     },
     reptile: {
       colors: [
         { name: '이끼 초록', emoji: '🟢', element: '목' },
+        { name: '정글 그린', emoji: '🌿', element: '목' },
+        { name: '카멜레온 라임', emoji: '🟩', element: '목' },
         { name: '사막 주황', emoji: '🟠', element: '화' },
+        { name: '선셋 레드', emoji: '🔴', element: '화' },
+        { name: '용암빛 오렌지', emoji: '🌋', element: '화' },
         { name: '바위 갈색', emoji: '🟤', element: '토' },
+        { name: '모래 사막 베이지', emoji: '🏜️', element: '토' },
+        { name: '테라코타 브라운', emoji: '🤎', element: '토' },
         { name: '달빛 은색', emoji: '⚪', element: '금' },
-        { name: '심해 남색', emoji: '🔵', element: '수' }
+        { name: '다이아몬드 화이트', emoji: '💎', element: '금' },
+        { name: '메탈릭 그레이', emoji: '🩶', element: '금' },
+        { name: '심해 남색', emoji: '🔵', element: '수' },
+        { name: '오션 블루', emoji: '🌊', element: '수' },
+        { name: '미스틱 퍼플', emoji: '🟣', element: '수' }
       ],
       snacks: [
         { name: '채소잎', emoji: '🥬', element: '목' },
+        { name: '민들레 잎', emoji: '🌿', element: '목' },
+        { name: '무화과 조각', emoji: '🍇', element: '목' },
         { name: '귀뚜라미', emoji: '🦗', element: '화' },
+        { name: '두비아 로치', emoji: '🪲', element: '화' },
+        { name: '메뚜기', emoji: '🦗', element: '화' },
         { name: '칼슘 파우더', emoji: '✨', element: '토' },
+        { name: '과일 믹스', emoji: '🍓', element: '토' },
+        { name: '호박 퓌레', emoji: '🎃', element: '토' },
         { name: '밀웜', emoji: '🐛', element: '금' },
-        { name: '수분젤', emoji: '💧', element: '수' }
+        { name: '슈퍼웜', emoji: '🪱', element: '금' },
+        { name: '실크웜', emoji: '🐛', element: '금' },
+        { name: '수분젤', emoji: '💧', element: '수' },
+        { name: '물에 적신 채소', emoji: '🥗', element: '수' },
+        { name: '수박 즙', emoji: '🍉', element: '수' }
       ],
       walks: [
         { name: '테라리움 탐험 오전 11시', emoji: '🌿', element: '목' },
+        { name: '유목 타기 오전 10시', emoji: '🪵', element: '목' },
+        { name: '식물 사이 숨바꼭질 오후 1시', emoji: '🌱', element: '목' },
         { name: '바스킹 일광욕 오후 1시', emoji: '☀️', element: '화' },
+        { name: '열램프 아래 낮잠 오후 2시', emoji: '🔆', element: '화' },
+        { name: '따뜻한 돌 위 휴식 오후 3시', emoji: '🪨', element: '화' },
         { name: '바닥재 파기 오후 4시', emoji: '⛰️', element: '토' },
+        { name: '은신처 탐색 오후 5시', emoji: '🏚️', element: '토' },
+        { name: '흙 속 터널링 오후 6시', emoji: '🕳️', element: '토' },
         { name: '조용한 관찰 저녁 7시', emoji: '👀', element: '금' },
-        { name: '미스팅 수분욕 오전 9시', emoji: '💦', element: '수' }
+        { name: '핸들링 교감 저녁 8시', emoji: '🤲', element: '금' },
+        { name: '거실 자유 탐험 저녁 9시', emoji: '🏠', element: '금' },
+        { name: '미스팅 수분욕 오전 9시', emoji: '💦', element: '수' },
+        { name: '얕은 물놀이 오전 8시', emoji: '🛁', element: '수' },
+        { name: '이슬 맞기 새벽 6시', emoji: '🌫️', element: '수' }
       ],
       bestFriend: [
         { name: '함께 일광욕하는 도마뱀', emoji: '🦎', element: '목' },
+        { name: '호기심 많은 이구아나', emoji: '🌿', element: '목' },
+        { name: '탐험가 카멜레온', emoji: '🦎', element: '목' },
         { name: '활발한 게코', emoji: '🔥', element: '화' },
+        { name: '에너지 넘치는 프릴드 도마뱀', emoji: '🦖', element: '화' },
+        { name: '빠른 스킹크', emoji: '💨', element: '화' },
         { name: '느긋한 거북이', emoji: '🐢', element: '토' },
+        { name: '듬직한 육지거북', emoji: '🐢', element: '토' },
+        { name: '편안한 턱수염 도마뱀', emoji: '🧸', element: '토' },
         { name: '신비로운 뱀', emoji: '🐍', element: '금' },
-        { name: '양서류 친구', emoji: '🐸', element: '수' }
+        { name: '우아한 킹스네이크', emoji: '👑', element: '금' },
+        { name: '고요한 볼파이톤', emoji: '🐍', element: '금' },
+        { name: '양서류 친구', emoji: '🐸', element: '수' },
+        { name: '물 좋아하는 반수생 거북', emoji: '🐢', element: '수' },
+        { name: '시원한 도롱뇽', emoji: '🌊', element: '수' }
       ]
     }
   };
@@ -934,10 +1174,14 @@ const SajuEngine = (() => {
       return targets[(seed >> (categoryIdx * 2)) % 3 === 2 ? 2 : (seed >> (categoryIdx * 2)) % 2];
     }
 
-    function pick(arr, targetElement, fallbackElement) {
-      let item = arr.find(i => i.element === targetElement);
-      if (!item) item = arr.find(i => i.element === fallbackElement);
-      if (!item) item = arr[seed % arr.length];
+    function pick(arr, targetElement, fallbackElement, categoryIdx) {
+      // 같은 오행에 해당하는 항목들을 모두 찾음
+      let candidates = arr.filter(i => i.element === targetElement);
+      if (candidates.length === 0) candidates = arr.filter(i => i.element === fallbackElement);
+      if (candidates.length === 0) candidates = arr;
+      // seed + 카테고리 인덱스 조합으로 다양한 선택
+      const pickIdx = ((seed >> (categoryIdx * 3 + 1)) ^ (seed >> (categoryIdx + 5))) % candidates.length;
+      const item = candidates[Math.abs(pickIdx) % candidates.length];
       return `${item.name} ${item.emoji}`;
     }
 
@@ -947,10 +1191,10 @@ const SajuEngine = (() => {
     const friendTarget = pickTarget(3);
 
     return {
-      color: pick(동물정보.colors, colorTarget, 부족오행),
-      snack: pick(동물정보.snacks, snackTarget, 부족오행),
-      walkTime: pick(동물정보.walks, walkTarget, 차부족오행),
-      bestFriend: pick(동물정보.bestFriend, friendTarget, 부족오행)
+      color: pick(동물정보.colors, colorTarget, 부족오행, 0),
+      snack: pick(동물정보.snacks, snackTarget, 부족오행, 1),
+      walkTime: pick(동물정보.walks, walkTarget, 차부족오행, 2),
+      bestFriend: pick(동물정보.bestFriend, friendTarget, 부족오행, 3)
     };
   }
 
