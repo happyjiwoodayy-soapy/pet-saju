@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>🐾 반려동물 사주 - 우리 아이의 타고난 운명</title>
+
+  <!-- OG Meta Tags -->
+  <meta property="og:title" content="🐾 반려동물 사주 - 우리 아이의 타고난 운명">
+  <meta property="og:description" content="생년월일로 알아보는 반려동물 오행 사주 분석">
+  <meta property="og:image" content="https://pet-saju.com/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="description" content="반려동물의 생년월일로 알아보는 오행 사주 분석. 우리 아이의 타고난 성격과 운명을 확인해보세요!">
+  <meta name="theme-color" content="#FFF5F7">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- ========== Screen 1: Landing ========== -->
+    <section id="screen-landing" class="screen active">
+      <div class="landing-bg">
+        <div class="sparkle sparkle-1"></div>
+        <div class="sparkle sparkle-2"></div>
+        <div class="sparkle sparkle-3"></div>
+        <div class="sparkle sparkle-4"></div>
+        <div class="sparkle sparkle-5"></div>
+      </div>
+      <div class="landing-content">
+        <div class="landing-paw">🐾</div>
+        <h1 class="landing-title">우리 아이의<br>타고난 운명을<br>알아보세요</h1>
+        <p class="landing-sub">생년월일 기반 오행 사주 분석</p>
+
+        <div class="floating-characters">
+          <span class="float-char float-char-1">🐶</span>
+          <span class="float-char float-char-2">🐱</span>
+          <span class="float-char float-char-3">🐹</span>
+          <span class="float-char float-char-4">🐰</span>
+          <span class="float-char float-char-5">🐦</span>
+          <span class="float-char float-char-6">🦎</span>
+        </div>
+
+        <button id="btn-start" class="btn-cta">사주 보러 가기 →</button>
+        <p class="landing-social-proof">10만 보호자가 확인한 사주!</p>
+      </div>
+    </section>
+
+    <!-- ========== Screen 2: Input ========== -->
+    <section id="screen-input" class="screen">
+      <div class="screen-inner">
+        <button id="btn-back-landing" class="btn-back">← 뒤로</button>
+
+        <h2 class="section-title">어떤 반려동물인가요?</h2>
+        <div class="animal-grid" id="animal-grid">
+          <button class="animal-chip" data-animal="dog">
+            <span class="animal-emoji">🐶</span>
+            <span class="animal-label">강아지</span>
+          </button>
+          <button class="animal-chip" data-animal="cat">
+            <span class="animal-emoji">🐱</span>
+            <span class="animal-label">고양이</span>
+          </button>
+          <button class="animal-chip" data-animal="hamster">
+            <span class="animal-emoji">🐹</span>
+            <span class="animal-label">햄스터</span>
+          </button>
+          <button class="animal-chip" data-animal="rabbit">
+            <span class="animal-emoji">🐰</span>
+            <span class="animal-label">토끼</span>
+          </button>
+          <button class="animal-chip" data-animal="bird">
+            <span class="animal-emoji">🐦</span>
+            <span class="animal-label">새</span>
+          </button>
+          <button class="animal-chip" data-animal="reptile">
+            <span class="animal-emoji">🦎</span>
+            <span class="animal-label">파충류</span>
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">이름</label>
+          <input type="text" id="input-name" class="form-input" placeholder="이름을 입력하세요" maxlength="20">
+          <p class="form-error" id="error-name"></p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">생년월일</label>
+          <div class="date-row">
+            <div class="date-field">
+              <select id="input-year" class="form-select">
+                <option value="">년</option>
+              </select>
+            </div>
+            <div class="date-field">
+              <select id="input-month" class="form-select">
+                <option value="">월</option>
+              </select>
+            </div>
+            <div class="date-field">
+              <select id="input-day" class="form-select">
+                <option value="">일</option>
+              </select>
+            </div>
+          </div>
+          <p class="form-error" id="error-date"></p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">성별</label>
+          <div class="gender-row">
+            <button class="gender-btn" data-gender="m" id="gender-m">♂ 수컷</button>
+            <button class="gender-btn" data-gender="f" id="gender-f">♀ 암컷</button>
+          </div>
+          <p class="form-error" id="error-gender"></p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">태어난 시간 <span class="optional">(선택)</span></label>
+          <select id="input-hour" class="form-select">
+            <option value="-1">모름</option>
+            <option value="0">자시 (23:00~01:00)</option>
+            <option value="1">축시 (01:00~03:00)</option>
+            <option value="2">인시 (03:00~05:00)</option>
+            <option value="3">묘시 (05:00~07:00)</option>
+            <option value="4">진시 (07:00~09:00)</option>
+            <option value="5">사시 (09:00~11:00)</option>
+            <option value="6">오시 (11:00~13:00)</option>
+            <option value="7">미시 (13:00~15:00)</option>
+            <option value="8">신시 (15:00~17:00)</option>
+            <option value="9">유시 (17:00~19:00)</option>
+            <option value="10">술시 (19:00~21:00)</option>
+            <option value="11">해시 (21:00~23:00)</option>
+          </select>
+        </div>
+
+        <button id="btn-analyze" class="btn-cta btn-disabled" disabled>사주 확인하기 🔮</button>
+      </div>
+    </section>
+
+    <!-- ========== Screen 3: Loading ========== -->
+    <section id="screen-loading" class="screen">
+      <div class="loading-content">
+        <div class="magic-circle">
+          <div class="magic-ring"></div>
+          <div class="magic-ring magic-ring-2"></div>
+          <span class="magic-animal" id="loading-animal"></span>
+        </div>
+        <div class="loading-stars">
+          <span class="star star-1">✦</span>
+          <span class="star star-2">✧</span>
+          <span class="star star-3">✦</span>
+          <span class="star star-4">✧</span>
+          <span class="star star-5">✦</span>
+          <span class="star star-6">✧</span>
+        </div>
+        <p class="loading-text">🔮 사주를 풀어보는 중...</p>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <p class="loading-message" id="loading-message">별자리를 읽고 있어요...</p>
+      </div>
+    </section>
+
+    <!-- ========== Screen 4: Result ========== -->
+    <section id="screen-result" class="screen">
+      <div class="screen-inner result-inner">
+
+        <!-- Result Card (for image capture) -->
+        <div id="result-card" class="result-card">
+          <div class="result-card-header">
+            <span class="result-sparkle">✨</span>
+            <span class="result-card-label">캐릭터 카드</span>
+            <span class="result-sparkle">✨</span>
+          </div>
+          <div class="result-animal" id="result-animal-emoji"></div>
+          <div class="result-type-badge" id="result-type-badge"></div>
+          <h2 class="result-type-name" id="result-type-name"></h2>
+          <p class="result-subtitle" id="result-subtitle"></p>
+          <p class="result-pet-name" id="result-pet-name"></p>
+        </div>
+
+        <!-- Five Elements Analysis -->
+        <div class="result-section">
+          <h3 class="result-section-title">오행 분석</h3>
+          <div id="elements-chart" class="elements-chart"></div>
+        </div>
+
+        <!-- Personality Stars -->
+        <div class="result-section">
+          <h3 class="result-section-title">타고난 성격</h3>
+          <div id="personality-chart" class="personality-chart"></div>
+        </div>
+
+        <!-- Hidden Charm -->
+        <div class="result-section">
+          <h3 class="result-section-title">숨겨진 매력</h3>
+          <p class="result-description" id="result-description"></p>
+        </div>
+
+        <!-- Lucky Info -->
+        <div class="result-section">
+          <h3 class="result-section-title">🍀 행운 정보</h3>
+          <div class="lucky-info" id="lucky-info"></div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="result-actions">
+          <button id="btn-save" class="btn-action btn-save">📷 저장</button>
+          <button id="btn-share" class="btn-action btn-share">📤 공유</button>
+        </div>
+        <button id="btn-retry" class="btn-cta btn-retry">다시 해보기 🔄</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- html2canvas CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <script src="js/saju-engine.js"></script>
+  <script src="js/share.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
