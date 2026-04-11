@@ -5,22 +5,103 @@
 const ShareManager = (() => {
 
   /**
-   * 결과 카드를 이미지로 저장
+   * CSS 변수를 실제 값으로 변환 (html2canvas가 var() 해석 못 하는 문제 대응)
+   */
+  function resolveCSSVariables(container) {
+    const computed = getComputedStyle(document.documentElement);
+    const varMap = {
+      '--color-wood': computed.getPropertyValue('--color-wood').trim(),
+      '--color-fire': computed.getPropertyValue('--color-fire').trim(),
+      '--color-earth': computed.getPropertyValue('--color-earth').trim(),
+      '--color-metal': computed.getPropertyValue('--color-metal').trim(),
+      '--color-water': computed.getPropertyValue('--color-water').trim(),
+      '--color-text-primary': computed.getPropertyValue('--color-text-primary').trim(),
+      '--color-text-secondary': computed.getPropertyValue('--color-text-secondary').trim(),
+      '--color-primary': computed.getPropertyValue('--color-primary').trim(),
+      '--color-bg-white': computed.getPropertyValue('--color-bg-white').trim(),
+      '--color-border': computed.getPropertyValue('--color-border').trim()
+    };
+
+    // 오행 바 색상을 인라인으로 치환
+    container.querySelectorAll('.element-bar-fill').forEach(bar => {
+      const style = getComputedStyle(bar);
+      bar.dataset.origBg = bar.style.background || '';
+      bar.style.backgroundColor = style.backgroundColor;
+    });
+
+    // 오행 바 너비를 인라인 고정 (transition 중 0%로 캡처되는 문제 방지)
+    container.querySelectorAll('.element-bar-fill').forEach(bar => {
+      bar.dataset.origWidth = bar.style.width || '';
+      bar.style.width = bar.dataset.width + '%';
+    });
+
+    return varMap;
+  }
+
+  /**
+   * 캡처 전 임시 스타일 적용 → 캡처 후 복원
+   */
+  function enterCaptureMode(container) {
+    // overflow: hidden 해제 (html2canvas 클리핑 방지)
+    const app = document.getElementById('app');
+    app.dataset.origOverflow = app.style.overflow || '';
+    app.style.overflow = 'visible';
+
+    // 캡처 영역에 캡처 전용 클래스 추가
+    container.classList.add('capturing');
+
+    resolveCSSVariables(container);
+  }
+
+  function exitCaptureMode(container) {
+    const app = document.getElementById('app');
+    app.style.overflow = app.dataset.origOverflow || '';
+
+    container.classList.remove('capturing');
+
+    // 인라인 스타일 복원
+    container.querySelectorAll('.element-bar-fill').forEach(bar => {
+      if (bar.dataset.origBg !== undefined) {
+        bar.style.background = bar.dataset.origBg;
+        delete bar.dataset.origBg;
+      }
+      if (bar.dataset.origWidth !== undefined) {
+        bar.style.width = bar.dataset.origWidth;
+        delete bar.dataset.origWidth;
+      }
+    });
+  }
+
+  /**
+   * 결과 전체를 이미지로 저장
    */
   async function saveAsImage(elementId, petName) {
     const el = document.getElementById(elementId);
     if (!el) return;
 
     try {
-      // Show toast while capturing
       showToast('이미지를 생성하는 중...');
+
+      // 캡처 모드 진입 (CSS 변수 해결, overflow 해제 등)
+      enterCaptureMode(el);
+
+      // 잠시 대기 (리플로우 반영)
+      await new Promise(r => setTimeout(r, 100));
 
       const canvas = await html2canvas(el, {
         scale: 2,
-        backgroundColor: null,
+        backgroundColor: '#FFF5F7',
         useCORS: true,
-        logging: false
+        logging: false,
+        allowTaint: true,
+        scrollX: 0,
+        scrollY: -window.scrollY,
+        windowWidth: el.scrollWidth,
+        windowHeight: el.scrollHeight
       });
+
+      // 캡처 모드 해제
+      exitCaptureMode(el);
 
       const link = document.createElement('a');
       link.download = `${petName || '반려동물'}_사주결과.png`;
@@ -30,6 +111,7 @@ const ShareManager = (() => {
       showToast('이미지가 저장되었어요! 📷');
     } catch (err) {
       console.error('Image save failed:', err);
+      exitCaptureMode(el);
       showToast('이미지 저장에 실패했어요 😢');
     }
   }

@@ -769,6 +769,28 @@ body {
   background: #A090EE;
 }
 
+/* ---------- Capture Mode (이미지 저장용) ---------- */
+.result-capture {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.result-capture.capturing {
+  background: #FFF5F7;
+  border-radius: 20px;
+  padding: var(--space-lg);
+  overflow: visible;
+}
+
+/* 캡처 중 애니메이션 비활성화 (움직이는 중 캡처 방지) */
+.result-capture.capturing *,
+.result-capture.capturing *::before,
+.result-capture.capturing *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
 /* ---------- Toast Notification ---------- */
 .toast {
   position: fixed;

@@ -416,9 +416,9 @@
       });
     });
 
-    // Save button
+    // Save button — 전체 결과 영역 캡처
     $('#btn-save').addEventListener('click', () => {
-      ShareManager.saveAsImage('result-card', state.result.petName);
+      ShareManager.saveAsImage('result-capture', state.result.petName);
     });
 
     // Share button
