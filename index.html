@@ -96,6 +96,21 @@
         </div>
 
         <div class="form-group">
+          <label class="form-label">반려동물 사진 <span class="optional">(선택)</span></label>
+          <div class="photo-upload" id="photo-upload">
+            <input type="file" id="input-photo" accept="image/*" hidden>
+            <div class="photo-placeholder" id="photo-placeholder">
+              <span class="photo-icon">📷</span>
+              <span class="photo-text">사진을 올려주세요</span>
+            </div>
+            <div class="photo-preview" id="photo-preview" style="display: none;">
+              <img id="photo-preview-img" alt="반려동물 사진">
+              <button type="button" class="photo-remove" id="photo-remove">✕</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
           <label class="form-label">이름</label>
           <input type="text" id="input-name" class="form-input" placeholder="이름을 입력하세요" maxlength="20">
           <p class="form-error" id="error-name"></p>
@@ -192,6 +207,9 @@
             <span class="result-sparkle">✨</span>
             <span class="result-card-label">캐릭터 카드</span>
             <span class="result-sparkle">✨</span>
+          </div>
+          <div class="result-photo-wrap" id="result-photo-wrap" style="display: none;">
+            <img id="result-photo" class="result-photo" alt="반려동물 사진">
           </div>
           <div class="result-animal" id="result-animal-emoji"></div>
           <div class="result-type-badge" id="result-type-badge"></div>

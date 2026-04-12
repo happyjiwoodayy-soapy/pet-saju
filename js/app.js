@@ -16,6 +16,7 @@
     day: null,
     gender: null,
     hour: -1,
+    photoDataUrl: null, // base64 Data URL of uploaded photo
     result: null
   };
 
@@ -271,6 +272,19 @@
     const card = $('#result-card');
     card.style.background = `linear-gradient(135deg, ${result.cardGradient[0]}, ${result.cardGradient[1]})`;
 
+    // Pet photo (if uploaded)
+    const resultPhotoWrap = $('#result-photo-wrap');
+    const resultPhoto = $('#result-photo');
+    const resultAnimalEmoji = $('#result-animal-emoji');
+    if (state.photoDataUrl) {
+      resultPhoto.src = state.photoDataUrl;
+      resultPhotoWrap.style.display = '';
+      resultAnimalEmoji.style.display = 'none';
+    } else {
+      resultPhotoWrap.style.display = 'none';
+      resultAnimalEmoji.style.display = '';
+    }
+
     // Animal emoji
     $('#result-animal-emoji').textContent = result.animalEmoji;
 
@@ -428,6 +442,48 @@
       });
     });
 
+    // Photo upload
+    const photoInput = $('#input-photo');
+    const photoPlaceholder = $('#photo-placeholder');
+    const photoPreview = $('#photo-preview');
+    const photoPreviewImg = $('#photo-preview-img');
+    const photoRemove = $('#photo-remove');
+
+    photoPlaceholder.addEventListener('click', () => photoInput.click());
+
+    photoInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      // Validate file type and size (max 5MB)
+      if (!file.type.startsWith('image/')) {
+        showToast('이미지 파일만 업로드할 수 있어요');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        showToast('5MB 이하의 이미지만 업로드할 수 있어요');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        state.photoDataUrl = ev.target.result;
+        photoPreviewImg.src = ev.target.result;
+        photoPlaceholder.style.display = 'none';
+        photoPreview.style.display = '';
+      };
+      reader.readAsDataURL(file);
+    });
+
+    photoRemove.addEventListener('click', (e) => {
+      e.stopPropagation();
+      state.photoDataUrl = null;
+      photoInput.value = '';
+      photoPreviewImg.src = '';
+      photoPreview.style.display = 'none';
+      photoPlaceholder.style.display = '';
+    });
+
     // Input fields → validate on change
     ['#input-name', '#input-breed', '#input-year', '#input-month', '#input-day', '#input-hour'].forEach(sel => {
       $(sel).addEventListener('input', validateForm);
@@ -490,6 +546,7 @@
       state.day = null;
       state.gender = null;
       state.hour = -1;
+      state.photoDataUrl = null;
       state.result = null;
 
       $$('.animal-chip').forEach(c => c.classList.remove('selected'));
@@ -497,6 +554,10 @@
       $('#input-name').value = '';
       $('#input-breed').value = '';
       $('#breed-group').style.display = 'none';
+      $('#input-photo').value = '';
+      $('#photo-preview').style.display = 'none';
+      $('#photo-placeholder').style.display = '';
+      $('#photo-preview-img').src = '';
       $('#input-year').value = '';
       $('#input-month').value = '';
       $('#input-day').value = '';
