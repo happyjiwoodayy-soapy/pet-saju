@@ -132,6 +132,7 @@ const ShareManager = (() => {
 
     params.set('g', state.gender || 'm');
     params.set('h', String(state.hour != null ? state.hour : -1));
+    if (state.breed) params.set('br', state.breed);
 
     return base + '?' + params.toString();
   }

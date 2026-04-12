@@ -9,6 +9,7 @@
   // ========== State ==========
   const state = {
     animal: null,
+    breed: '',
     name: '',
     year: null,
     month: null,
@@ -16,6 +17,16 @@
     gender: null,
     hour: -1,
     result: null
+  };
+
+  // 동물별 품종 힌트 (placeholder + 예시 텍스트)
+  const breedHints = {
+    dog: { placeholder: '예: 골든리트리버, 푸들, 말티즈...', hint: '모르면 비워두셔도 괜찮아요! 믹스견도 "믹스"라고 적어주세요 🐕' },
+    cat: { placeholder: '예: 러시안블루, 페르시안, 코숏...', hint: '모르면 비워두셔도 괜찮아요! 한국 고양이는 "코숏"이라고 적어주세요 🐈' },
+    hamster: { placeholder: '예: 골든, 드워프, 로보로브스키...', hint: '모르면 비워두셔도 괜찮아요! 🐹' },
+    rabbit: { placeholder: '예: 홀랜드롭, 네덜란드 드워프...', hint: '모르면 비워두셔도 괜찮아요! 🐰' },
+    bird: { placeholder: '예: 앵무새, 잉꼬, 카나리아...', hint: '모르면 비워두셔도 괜찮아요! 🐦' },
+    reptile: { placeholder: '예: 레오파드 게코, 턱수염 도마뱀...', hint: '모르면 비워두셔도 괜찮아요! 🦎' }
   };
 
   // ========== DOM References ==========
@@ -39,6 +50,7 @@
         const b = params.get('b');
         const g = params.get('g') || 'm';
         const h = parseInt(params.get('h') || '-1');
+        const br = params.has('br') ? decodeURIComponent(params.get('br')) : '';
 
         const year = parseInt(b.substring(0, 4));
         const month = parseInt(b.substring(4, 6));
@@ -46,6 +58,7 @@
 
         if (t && n && year && month && day) {
           state.animal = t;
+          state.breed = br;
           state.name = n;
           state.year = year;
           state.month = month;
@@ -53,7 +66,16 @@
           state.gender = g;
           state.hour = h;
 
-          const result = SajuEngine.analyze(state);
+          const result = SajuEngine.analyze({
+            animal: state.animal,
+            breed: state.breed,
+            name: state.name,
+            year: state.year,
+            month: state.month,
+            day: state.day,
+            gender: state.gender,
+            hour: state.hour
+          });
           state.result = result;
           renderResult(result);
           switchScreen('result');
@@ -121,6 +143,9 @@
 
     // Animal
     if (!state.animal) valid = false;
+
+    // Breed (optional)
+    state.breed = $('#input-breed').value.trim();
 
     // Name
     const name = $('#input-name').value.trim();
@@ -262,6 +287,16 @@
     const genderSymbol = result.gender === 'm' ? '♂' : '♀';
     $('#result-pet-name').textContent = `${result.petName} ${genderSymbol}`;
 
+    // Breed
+    const breedEl = $('#result-breed');
+    if (result.breed) {
+      breedEl.textContent = `${result.animalName} · ${result.breed}`;
+      breedEl.style.display = '';
+    } else {
+      breedEl.textContent = '';
+      breedEl.style.display = 'none';
+    }
+
     // Elements chart
     const elementsChart = $('#elements-chart');
     elementsChart.innerHTML = '';
@@ -367,6 +402,18 @@
         $$('.animal-chip').forEach(c => c.classList.remove('selected'));
         chip.classList.add('selected');
         state.animal = chip.dataset.animal;
+
+        // 품종 필드 표시
+        const breedGroup = $('#breed-group');
+        const breedInput = $('#input-breed');
+        const breedHintEl = $('#breed-hint');
+        const info = breedHints[state.animal];
+        if (info) {
+          breedInput.placeholder = info.placeholder;
+          breedHintEl.textContent = info.hint;
+          breedGroup.style.display = '';
+        }
+
         validateForm();
       });
     });
@@ -382,7 +429,7 @@
     });
 
     // Input fields → validate on change
-    ['#input-name', '#input-year', '#input-month', '#input-day', '#input-hour'].forEach(sel => {
+    ['#input-name', '#input-breed', '#input-year', '#input-month', '#input-day', '#input-hour'].forEach(sel => {
       $(sel).addEventListener('input', validateForm);
       $(sel).addEventListener('change', validateForm);
     });
@@ -397,6 +444,7 @@
       // Run analysis
       const result = SajuEngine.analyze({
         animal: state.animal,
+        breed: state.breed,
         name: state.name,
         year: state.year,
         month: state.month,
@@ -435,6 +483,7 @@
     $('#btn-retry').addEventListener('click', () => {
       // Reset form
       state.animal = null;
+      state.breed = '';
       state.name = '';
       state.year = null;
       state.month = null;
@@ -446,6 +495,8 @@
       $$('.animal-chip').forEach(c => c.classList.remove('selected'));
       $$('.gender-btn').forEach(b => b.classList.remove('selected'));
       $('#input-name').value = '';
+      $('#input-breed').value = '';
+      $('#breed-group').style.display = 'none';
       $('#input-year').value = '';
       $('#input-month').value = '';
       $('#input-day').value = '';

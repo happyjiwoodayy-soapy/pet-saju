@@ -1200,7 +1200,7 @@ const SajuEngine = (() => {
 
   // ==================== 메인 분석 함수 ====================
 
-  function analyze({ animal, name, year, month, day, gender, hour }) {
+  function analyze({ animal, breed, name, year, month, day, gender, hour }) {
     // 4주 산출
     const 연주 = 연주계산(year);
     const 월주 = 월주계산(year, month);
@@ -1242,6 +1242,7 @@ const SajuEngine = (() => {
     return {
       petName: name,
       animal,
+      breed: breed || '',
       animalEmoji: 동물이모지[animal],
       animalName: 동물이름[animal],
       gender,

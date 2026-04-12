@@ -89,6 +89,12 @@
           </button>
         </div>
 
+        <div class="form-group breed-group" id="breed-group" style="display: none;">
+          <label class="form-label">품종 <span class="optional">(선택)</span></label>
+          <input type="text" id="input-breed" class="form-input" placeholder="품종을 입력하세요" maxlength="30">
+          <p class="breed-hint" id="breed-hint"></p>
+        </div>
+
         <div class="form-group">
           <label class="form-label">이름</label>
           <input type="text" id="input-name" class="form-input" placeholder="이름을 입력하세요" maxlength="20">
@@ -192,6 +198,7 @@
           <h2 class="result-type-name" id="result-type-name"></h2>
           <p class="result-subtitle" id="result-subtitle"></p>
           <p class="result-pet-name" id="result-pet-name"></p>
+          <p class="result-breed" id="result-breed"></p>
         </div>
 
         <!-- Five Elements Analysis -->
