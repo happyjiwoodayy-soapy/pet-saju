@@ -1138,8 +1138,9 @@ const SajuEngine = (() => {
     return Math.abs(hash);
   }
 
-  function 성격변조(basePersonality, name, year, month, day, gender) {
-    const seed = 해시생성(`${name}${year}${month}${day}${gender}`);
+  function 성격변조(basePersonality, year, month, day, hour) {
+    // 생년월일시 기반 결정적 시드 (이름/성별은 사주 원리상 별점에 영향 X)
+    const seed = 해시생성(`${year}-${month}-${day}-${hour}`);
     const traits = { ...basePersonality };
 
     const keys = Object.keys(traits);
@@ -1154,7 +1155,7 @@ const SajuEngine = (() => {
 
   // ==================== 행운 정보 생성 (동물별 + 오행별) ====================
 
-  function 행운정보생성(animal, 오행백분율, name) {
+  function 행운정보생성(animal, 오행백분율, year, month, day, hour) {
     const 동물정보 = 동물행운[animal];
     if (!동물정보) return { color: '무지개색 🌈', snack: '간식 🍪', walkTime: '오후 산책 🌤', bestFriend: '좋은 친구 💕' };
 
@@ -1164,7 +1165,8 @@ const SajuEngine = (() => {
     const 차부족오행 = sorted[1][0]; // 두 번째로 적은 오행
     const 중간오행 = sorted[2][0]; // 세 번째 오행
 
-    const seed = 해시생성(name + animal);
+    // 생년월일시 + 동물 기반 결정적 시드 (이름은 사주에 영향 X)
+    const seed = 해시생성(`${year}-${month}-${day}-${hour}-${animal}`);
 
     // seed 기반으로 각 카테고리마다 다른 보충 오행을 선택
     // 카테고리별로 seed의 다른 비트를 사용해 부족/차부족/중간 중 하나를 고름
@@ -1221,11 +1223,11 @@ const SajuEngine = (() => {
     const 유형명 = 유형결정(오행.percent);
     const 유형 = 유형데이터[유형명];
 
-    // 성격 변조 (같은 유형이라도 개체별 차이)
-    const personality = 성격변조(유형.personality, name, year, month, day, gender);
+    // 성격 변조 (생년월일시 기반 결정적 변조 — 같은 사주는 항상 같은 별점)
+    const personality = 성격변조(유형.personality, year, month, day, hour);
 
-    // seed 생성
-    const seed = 해시생성(`${name}${year}${month}${day}`);
+    // seed 생성 — 생년월일시(+동물)만으로 결정 (이름/성별 무관)
+    const seed = 해시생성(`${year}-${month}-${day}-${hour}-${animal}`);
 
     // 숨겨진 매력 동적 생성
     const description = 숨겨진매력생성({
@@ -1236,8 +1238,8 @@ const SajuEngine = (() => {
       seed
     });
 
-    // 행운 정보 (동물별 + 부족 오행 보충)
-    const lucky = 행운정보생성(animal, 오행.percent, name);
+    // 행운 정보 (동물별 + 부족 오행 보충 — 생년월일시 기반)
+    const lucky = 행운정보생성(animal, 오행.percent, year, month, day, hour);
 
     return {
       petName: name,
