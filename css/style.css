@@ -1217,30 +1217,41 @@ select:focus:not(:focus-visible) {
 }
 
 .coffee-btn-copy {
+  background: linear-gradient(135deg, #FFB347 0%, #FF8C42 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 140, 66, 0.3);
+}
+
+.coffee-btn-copy:hover {
+  box-shadow: 0 6px 16px rgba(255, 140, 66, 0.4);
+}
+
+.coffee-btn-share {
   background: white;
   color: #B85C2A;
   border: 1.5px solid #FFB347;
 }
 
-.coffee-btn-copy:hover {
+.coffee-btn-share:hover {
   background: #FFF4E6;
 }
 
-.coffee-btn-toss {
-  background: linear-gradient(135deg, #0064FF 0%, #1E7CFF 100%);
-  color: white;
-  box-shadow: 0 4px 12px rgba(0, 100, 255, 0.25);
-}
-
-.coffee-btn-toss:hover {
-  box-shadow: 0 6px 16px rgba(0, 100, 255, 0.35);
+.coffee-modal-hint {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  background: #FFF8F0;
+  border-radius: 10px;
 }
 
 .coffee-modal-thanks {
   text-align: center;
   font-size: 12px;
   color: var(--color-text-secondary);
-  margin: 14px 0 0;
+  margin: 10px 0 0;
 }
 
 @keyframes fadeIn {

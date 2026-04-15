@@ -585,6 +585,7 @@
     const coffeeModalClose = $('#coffee-modal-close');
     const coffeeModalBackdrop = $('#coffee-modal-backdrop');
     const coffeeBtnCopy = $('#coffee-btn-copy');
+    const coffeeBtnShare = $('#coffee-btn-share');
     const coffeeAccountNumber = $('#coffee-account-number');
 
     function openCoffeeModal() {
@@ -637,6 +638,52 @@
 
     coffeeBtnCopy.addEventListener('click', copyAccountNumber);
     coffeeAccountNumber.addEventListener('click', copyAccountNumber);
+
+    // 계좌 정보 공유 (Web Share API → 폴백: 클립보드 복사)
+    function shareAccountInfo() {
+      const shareText = '☕ 소복이에게 커피 사주기\n\n은행: 카카오뱅크\n계좌번호: 3333-17-3087203\n예금주: 서지우\n\n반려동물 사주 서비스를 응원해주세요 💕';
+      const shareData = {
+        title: '소복이에게 커피사주기 ☕',
+        text: shareText
+      };
+
+      const fallbackCopy = (text) => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData).catch((err) => {
+          if (err && err.name === 'AbortError') return;
+          // 공유 실패 시 클립보드 복사로 폴백
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(shareText).then(
+              () => showToast('계좌 정보가 복사됐어요! 📋'),
+              () => { fallbackCopy(shareText); showToast('계좌 정보가 복사됐어요! 📋'); }
+            );
+          } else {
+            fallbackCopy(shareText);
+            showToast('계좌 정보가 복사됐어요! 📋');
+          }
+        });
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareText).then(
+          () => showToast('계좌 정보가 복사됐어요! 📋'),
+          () => { fallbackCopy(shareText); showToast('계좌 정보가 복사됐어요! 📋'); }
+        );
+      } else {
+        fallbackCopy(shareText);
+        showToast('계좌 정보가 복사됐어요! 📋');
+      }
+    }
+
+    coffeeBtnShare.addEventListener('click', shareAccountInfo);
   }
 
   // ========== Init ==========
