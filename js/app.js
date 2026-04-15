@@ -578,6 +578,65 @@
 
       switchScreen('input');
     });
+
+    // ===== Coffee donation modal =====
+    const coffeeBtn = $('#btn-coffee');
+    const coffeeModal = $('#coffee-modal');
+    const coffeeModalClose = $('#coffee-modal-close');
+    const coffeeModalBackdrop = $('#coffee-modal-backdrop');
+    const coffeeBtnCopy = $('#coffee-btn-copy');
+    const coffeeAccountNumber = $('#coffee-account-number');
+
+    function openCoffeeModal() {
+      coffeeModal.classList.add('active');
+      coffeeModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCoffeeModal() {
+      coffeeModal.classList.remove('active');
+      coffeeModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    coffeeBtn.addEventListener('click', openCoffeeModal);
+    coffeeModalClose.addEventListener('click', closeCoffeeModal);
+    coffeeModalBackdrop.addEventListener('click', closeCoffeeModal);
+
+    // ESC 키로 닫기
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && coffeeModal.classList.contains('active')) {
+        closeCoffeeModal();
+      }
+    });
+
+    // 계좌번호 복사 (모달의 복사 버튼 + 계좌번호 직접 탭)
+    function copyAccountNumber() {
+      const number = coffeeAccountNumber.textContent.replace(/-/g, '');
+      const fallbackCopy = (text) => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(number).then(
+          () => showToast('계좌번호가 복사됐어요! 💕'),
+          () => { fallbackCopy(number); showToast('계좌번호가 복사됐어요! 💕'); }
+        );
+      } else {
+        fallbackCopy(number);
+        showToast('계좌번호가 복사됐어요! 💕');
+      }
+    }
+
+    coffeeBtnCopy.addEventListener('click', copyAccountNumber);
+    coffeeAccountNumber.addEventListener('click', copyAccountNumber);
   }
 
   // ========== Init ==========

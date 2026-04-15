@@ -256,6 +256,42 @@
 
   </div>
 
+  <!-- Floating Coffee Button -->
+  <button id="btn-coffee" class="btn-coffee" type="button" aria-label="소복이에게 커피사주기">
+    <span class="coffee-emoji">☕</span>
+    <span class="coffee-text">소복이에게 커피사주기</span>
+  </button>
+
+  <!-- Coffee Donation Modal -->
+  <div id="coffee-modal" class="coffee-modal" aria-hidden="true">
+    <div class="coffee-modal-backdrop" id="coffee-modal-backdrop"></div>
+    <div class="coffee-modal-content" role="dialog" aria-labelledby="coffee-modal-title">
+      <button class="coffee-modal-close" id="coffee-modal-close" aria-label="닫기">✕</button>
+      <div class="coffee-modal-header">
+        <span class="coffee-modal-icon">☕</span>
+        <h3 id="coffee-modal-title" class="coffee-modal-title">소복이에게 커피사주기</h3>
+        <p class="coffee-modal-subtitle">서비스가 도움이 되셨다면<br>커피 한 잔의 응원을 보내주세요 💕</p>
+      </div>
+      <div class="coffee-account">
+        <div class="coffee-account-row">
+          <span class="coffee-account-label">은행</span>
+          <span class="coffee-account-value">카카오뱅크</span>
+        </div>
+        <div class="coffee-account-row">
+          <span class="coffee-account-label">계좌번호</span>
+          <span class="coffee-account-value coffee-account-number" id="coffee-account-number">3333-17-3087203</span>
+        </div>
+        <div class="coffee-account-row">
+          <span class="coffee-account-label">예금주</span>
+          <span class="coffee-account-value">서지우</span>
+        </div>
+      </div>
+      <button class="coffee-btn coffee-btn-copy" id="coffee-btn-copy">📋 계좌번호 복사하기</button>
+      <a class="coffee-btn coffee-btn-toss" id="coffee-btn-toss" href="https://toss.me" target="_blank" rel="noopener noreferrer">💸 토스로 송금하기</a>
+      <p class="coffee-modal-thanks">작은 응원도 큰 힘이 돼요 🙏</p>
+    </div>
+  </div>
+
   <!-- html2canvas CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
